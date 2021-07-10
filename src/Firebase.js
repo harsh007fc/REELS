@@ -19,7 +19,9 @@ export let auth = firebase.auth();
 let firestore = firebase.firestore();
 //saare firestore ka access ni dena hota bs jo use ayenge unka hi dena hota hai
 export let database = {
-    user:firestore.collection('user')
+    user:firestore.collection('user'),
+    getCurrentTimeStamp:firebase.firestore.FieldValue.serverTimestamp
 }
+export let storage = firebase.storage();
 
-export default firebase;
+// export default firebase;

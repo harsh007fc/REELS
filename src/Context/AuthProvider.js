@@ -1,32 +1,34 @@
 import React,{useEffect,useState,useContext} from 'react'
 
-import {auth} from '../Firebase'
+import {auth} from '../firebase'
 
-let AuthContext = React.createContext();
+export let AuthContext = React.createContext();
 
 function AuthProvider({children}) {
     let [currentUser,setCurrentUser] = useState();
     
     let [loading,setLoading] = useState(true);
 
-    function Signup(email,password)
+    function signup(email,password)
     {
         return auth.createUserWithEmailAndPassword(email,password);
     }
-    function Login(email,password)
+    function login(email,password)
     {
         return auth.signInWithEmailAndPassword(email,password);
     }
-    function Logout()
+    function logout()
     {
         return auth.signOut();
     }
     useEffect(()=>{
+        //component did mount 
         let unsubscribe = auth.onAuthStateChanged(user=>{
             setCurrentUser(user);
             setLoading(false);
         })
 
+        //component will unmount
         return ()=>{
             unsubscribe()
         }
@@ -34,15 +36,19 @@ function AuthProvider({children}) {
 
     let value = {
         currentUser,
-        Signup,
-        Login,
-        Logout,
+        signup,
+        login,
+        logout,
     }
     return (
         <AuthContext.Provider value={value}>
-            {loading && children}
+             {!loading&&children}
         </AuthContext.Provider>
     )
 }
 
 export default AuthProvider
+
+
+
+

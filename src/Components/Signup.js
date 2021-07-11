@@ -1,6 +1,6 @@
 import React,{useContext,useEffect,useState} from 'react'
 import {AuthContext} from '../Context/AuthProvider'
-import {storage} from '../firebase'
+import {storage,database} from '../firebase'
 function Signup() {
     let [email,setMail] = useState('');
     let [file,setFile] = useState(null);
@@ -15,6 +15,7 @@ function Signup() {
 
     let handleSignup = async(e) => {
         e.preventDefault();
+        try{
         setLoading(true);
         let res = await signup(email,password);
         let uid = res.user.uid;
@@ -39,9 +40,28 @@ function Signup() {
         async function fn3(){
             let downloadUrl = await uploadTaskListner.snapshot.ref.getDownloadURL();
             console.log(downloadUrl);
+            console.log(database);
+            await database.users.doc(uid).set({
+                email:email,
+                userId:uid,
+                username:name,
+                createdAt:database.getCurrentTimeStamp(),
+                profileUrl:downloadUrl,
+                postIds:[]
+            })
         }
         console.log(uid);
-        setLoading(false)
+        setLoading(false);
+        console.log('User Has Signed up');
+    }
+    catch(error){
+        setError(error);
+        setTimeout(() => {
+            setError('');
+        }, 2000);
+        setLoading(false);
+        
+    }
     }
 
     let handleFileSubmit = (e) => {

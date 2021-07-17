@@ -24,14 +24,12 @@ function Ioa() {
     }
 
     let observer = new IntersectionObserver(callback,{
-        threshold:"0.9",
-        root:null,
+        threshold:"0.9"
     });
 
     useEffect(()=>{
         let elements = document.querySelectorAll('.videos');
         elements.forEach((el)=>{
-           
             observer.observe(el);
         })
     },[])

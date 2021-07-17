@@ -1,6 +1,7 @@
 import React,{useContext,useEffect,useState} from 'react'
 import {AuthContext} from '../Context/AuthProvider'
 import {storage,database} from '../firebase'
+import {useHistory} from 'react-router-dom'
 function Signup() {
     let [email,setMail] = useState('');
     let [file,setFile] = useState(null);
@@ -8,9 +9,10 @@ function Signup() {
     let [name,setName] = useState('');
     let [error,setError] = useState('');
     let [loading,setLoading] = useState(false);
-
+    let history = useHistory();
     // console.log(useContext(AuthContext));
-    let {signup} = useContext(AuthContext);
+    let {signup,currentUser} = useContext(AuthContext);
+    
     console.log(signup);
 
     let handleSignup = async(e) => {
@@ -53,6 +55,7 @@ function Signup() {
         console.log(uid);
         setLoading(false);
         console.log('User Has Signed up');
+        history.push('/')
     }
     catch(error){
         setError(error);
@@ -70,6 +73,12 @@ function Signup() {
             setFile(file);
         }
     }
+    useEffect(()=>{
+        if(currentUser)
+        { //if already logged in then redirect to feed directly
+          history.push('/')
+        }
+      },[])
     return (
         <div>
             <form onSubmit={handleSignup}>

@@ -7,7 +7,7 @@ function Login() {
     const [error, setError] = useState("")
     const [loading, setLoading] = useState(false);
     const {login,currentUser} =useContext(AuthContext);
-    let history = useHistory();
+    // let history = useHistory();
      const handleSubmit = async(e)=>{
           console.log('hi');
         e.preventDefault()
@@ -16,7 +16,7 @@ function Login() {
           setLoading(true)
           await login(email, password)
           setLoading(false)
-          history.push('/')
+        //   history.push('/')
         } catch {
           setError("Failed to log in")
           setTimeout(()=>setError(''),2000)
@@ -26,7 +26,7 @@ function Login() {
       useEffect(()=>{
         if(currentUser)
         {
-          history.push('/')
+        //   history.push('/')
         }
       },[])
     return (

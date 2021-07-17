@@ -4,6 +4,7 @@ import AuthProvider from './Context/AuthProvider';
 import Main from './MaterialUi/Main';
 import Ioa from './Components/Ioa';
 import Login from './Components/Login';
+import Feed from './Components/Feed';
 import {BrowserRouter as Router,Switch,Route} from  'react-router-dom'
 function App() {
   return (

@@ -6,12 +6,13 @@ import Ioa from './Components/Ioa';
 import Login from './Components/Login';
 import Feed from './Components/Feed';
 import {BrowserRouter as Router,Switch,Route} from  'react-router-dom'
+import PrivateRoute from './Components/PrivateRoute';
 function App() {
   return (
     <Router>
       <AuthProvider>
       <Switch>
-        <Route exact path='/' component={Feed}/>
+        <PrivateRoute exact path='/' component={Feed}/>
         <Route  path='/login' component={Login}/>
         <Route  path='/signup' component={Signup}/>
       </Switch>

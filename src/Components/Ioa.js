@@ -3,7 +3,7 @@ import vid1 from './fashion.mp4'
 import vid2 from './frog.mp4'
 import vid3 from './water.mp4'
 import vid4 from './tree.mp4'
-import Video from './Video'
+import Video from './Videoio'
 // import  '../App.css'
 
 function Ioa() {

@@ -1,16 +1,22 @@
 import React from 'react'
-
+import './Video.css'
+import ReactDOM from 'react-dom';
 function Video(props) {
-
-    let handleMute = (e) => {
+    const handleMute = (e)=>{
         e.preventDefault();
         e.target.muted = !e.target.muted;
     }
-    // console.log(props.source);
-
+    const handleAutoScroll= (e)=>{
+        let next = ReactDOM.findDOMNode(e.target).parentNode.nextSibling;
+        if(next)
+        {
+            next.scrollIntoView({behaviour:'smooth'});
+            e.target.muted = true;
+        }
+    }
     return (
         <>
-            <video src={props.source} className='video-styles' onClick={handleMute} controls muted='muted' type='video/mp4'  ></video>
+        <video onEnded={handleAutoScroll} src={props.source} className='video-styles' onClick={handleMute} muted='muted' type='video/mp4' ></video>
         </>
     )
 }

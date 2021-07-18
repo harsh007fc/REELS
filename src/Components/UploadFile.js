@@ -25,21 +25,21 @@ function UploadFile(props) {
         if(!file){
             setError("Please Select A File");
             setTimeout(() => {
-                setError("")
+                setError(null)
             }, 2000);
             return; 
         }
         if( types.indexOf(file.type) == -1){
             setError("Please select a video file");
             setTimeout(() => {
-                setError("")
+                setError(null)
             }, 2000);
             return; 
         }
         if(file.size / (1024 * 1024) > 100){
             setError("Selected file is too big ");
             setTimeout(() => {
-                setError("")
+                setError(null)
             }, 2000);
             return; 
         }

@@ -20,6 +20,7 @@ let firestore = firebase.firestore();
 //saare firestore ka access ni dena hota bs jo use ayenge unka hi dena hota hai
 export let database = {
     users:firestore.collection('users'),
+    posts:firestore.collection('posts'),
     getCurrentTimeStamp:firebase.firestore.FieldValue.serverTimestamp
 }
 export let storage = firebase.storage();

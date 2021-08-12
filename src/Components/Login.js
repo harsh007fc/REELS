@@ -1,6 +1,7 @@
 import React,{useState,useContext, useEffect} from 'react'
 import { useHistory} from 'react-router-dom';
 import {AuthContext} from '../Context/AuthProvider';
+import '../Components/Styles/SignUp.css'
 function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('')
@@ -30,21 +31,25 @@ function Login() {
         }
       },[])
     return (
-        <div>
-              <form onSubmit={handleSubmit} >
-             <div>
-                <label htmlFor=''>Email</label>
-                    <input type='email' value={email} onChange={(e)=>setEmail(e.target.value)}/>
-                </div>
-                <div>
-                <label htmlFor=''>Password</label>
-                    <input type='password' value={password} onChange={(e)=>setPassword(e.target.value)}/>
-                </div>
-                <button type='submit' disabled={loading}>Login</button>
-                {error?<h1>{error}</h1>:<></>}
-                </form>
-               
+      <body id="body">
+        <div  className="container">
+          <form onSubmit={handleSubmit} className='content' >
+          <h1 id="say-hello">Stories</h1>
+            <div className="email">
+              <label htmlFor=''>Email</label><br />
+              <input className="fld" type='email' placeholder="Enter your Email" value={email} onChange={(e) => setEmail(e.target.value)} />
+            </div>
+            <div>
+              <label htmlFor=''>Password</label><br />
+              <input className="fld" placeholder="Enter your Password" type='password' value={password} onChange={(e) => setPassword(e.target.value)} />
+            </div>
+            <br />
+            <button className="btn" type='submit' disabled={loading}>Login</button>
+            {error ? <h1>{error}</h1> : <></>}
+          </form>
         </div>
+
+      </body>
     )
 }
 

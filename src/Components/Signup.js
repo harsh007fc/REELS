@@ -102,7 +102,7 @@ function Signup() {
                             <input  id="pic" className="fld" type="file" accept='image/*' onChange={handleFileSubmit} />
                         </div>
                     </div>
-                    <button class="btn" type='submit' disabled={loading}>Login</button>
+                    <button className="btn" type='submit' disabled={loading}>Login</button>
                 </form>
             </div>
 
@@ -111,6 +111,6 @@ function Signup() {
     )
 }
 
-export default Signup
+export default Signup;
 
 

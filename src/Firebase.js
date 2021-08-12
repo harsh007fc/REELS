@@ -5,12 +5,13 @@ import 'firebase/firestore'
 
 firebase.initializeApp(
     {
-        apiKey: "AIzaSyBTB3eAxKeiEHJ6hY3RiSpK8Mh_x8tFvKg",
-        authDomain: "reels-42617.firebaseapp.com",
-        projectId: "reels-42617",
-        storageBucket: "reels-42617.appspot.com",
-        messagingSenderId: "135168045751",
-        appId: "1:135168045751:web:86e0719c452c53e3db9332"
+        apiKey: "AIzaSyBFmPGDNraTh-mVCZ3Zd9fRKPYhRWKXRfk",
+        authDomain: "stories-62e28.firebaseapp.com",
+        projectId: "stories-62e28",
+        storageBucket: "stories-62e28.appspot.com",
+        messagingSenderId: "338968134184",
+        appId: "1:338968134184:web:45a8d38109c8e6d5336b1d",
+        measurementId: "G-LB02NKTPM3"
       }
 )
 

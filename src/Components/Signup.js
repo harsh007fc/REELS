@@ -22,16 +22,16 @@ function Signup() {
             setLoading(true);
             let res = await signup(email, password);
             let uid = res.user.uid;
+            //yeh path hai storage ka
             let uploadTaskListner = storage.ref(`/users/${uid}/profileImage`).put(file);
             // fn1-> uploading track
-            //fn2 -> error 
-            //fn 3 -> success
             uploadTaskListner.on('state_changed', fn1, fn2, fn3);
             function fn1(snapshot) {
                 var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
                 console.log('Upload is ' + progress + ' % done');
             }
 
+            //fn2 -> error 
             function fn2(error) {
                 setError(error);
                 setTimeout(() => {
@@ -40,10 +40,11 @@ function Signup() {
                 setLoading(false);
             }
 
+            //fn 3 -> success
             async function fn3() {
                 let downloadUrl = await uploadTaskListner.snapshot.ref.getDownloadURL();
-                console.log(downloadUrl);
-                console.log(database);
+                // console.log(downloadUrl);
+                // console.log(database);
                 await database.users.doc(uid).set({
                     email: email,
                     userId: uid,
@@ -68,6 +69,7 @@ function Signup() {
         }
     }
 
+    //this is for profile pic file 
     let handleFileSubmit = (e) => {
         let file = e.target.files[0];
         if (file) {
@@ -83,7 +85,7 @@ function Signup() {
         <body id="body">
             <div className="container">
                 <form onSubmit={handleSignup} className='content'>
-                <h1 id="say-hello">Stories</h1>
+                    <h1 id="say-hello">Stories</h1>
                     <div>
                         <div className='name'>
                             <label for="name">UserName</label><br />
@@ -99,7 +101,7 @@ function Signup() {
                         </div>
                         <div className="email">
                             <label htmlFor="profile">Profile Image </label><br />
-                            <input  id="pic" className="fld" type="file" accept='image/*' onChange={handleFileSubmit} />
+                            <input id="pic" className="fld" type="file" accept='image/*' onChange={handleFileSubmit} />
                         </div>
                     </div>
                     <button className="btn" type='submit' disabled={loading}>Login</button>

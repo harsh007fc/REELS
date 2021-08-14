@@ -7,7 +7,7 @@ function PrivateRoute({component:Component,...rest}) {
     return (
         <Route {...rest} render={props=>{
             //Component yahaan actual mein Feed hi hai with props
-            return currentUser ? <Component {...props}/> : <Redirect to='/login'/>
+            return currentUser ? <Component {...props}/> : <Redirect to='/signup'/>
         }} />
     )
 }

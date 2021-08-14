@@ -1,4 +1,6 @@
 .feed-container{
+    margin-top: 70px;
+    /* position: relative; */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -7,4 +9,5 @@
 
 .center{
     height: 90vh;
+    overflow: hidden;
 }

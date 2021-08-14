@@ -30,7 +30,7 @@ function AuthProvider({children}) {
 
         //component will unmount
         return ()=>{
-            unsubscribe()
+            unsubscribe();
         }
     },[])
 

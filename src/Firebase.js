@@ -22,6 +22,7 @@ let firestore = firebase.firestore();
 export let database = {
     users:firestore.collection('users'),
     posts:firestore.collection('posts'),
+    comments:firestore.collection('comments'),
     getCurrentTimeStamp:firebase.firestore.FieldValue.serverTimestamp
 }
 export let storage = firebase.storage();

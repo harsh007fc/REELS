@@ -9,8 +9,10 @@ import Typography from '@material-ui/core/Typography';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import IconButton from '@material-ui/core/IconButton';
 // import Ticker from 'react-ticker';
+import AddComment from './AddComment';
 import MusicNoteIcon from '@material-ui/icons/MusicNote';
 import './Posts.css'
+import Likes from './Likes';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Dialog from '@material-ui/core/Dialog';
 import MuiDialogContent from '@material-ui/core/DialogContent';
@@ -125,6 +127,7 @@ function Posts({userData=null}) {
                     <Avatar src={post.uProfile}></Avatar>
                     <h4>{post.uName}</h4>
                   </div>
+                  <Likes userData={userData} postData={post}/>
                   <ChatBubbleIcon onClick={() => handleClickOpen(post.pId)} className={`${classes.ci} icon-styling`} />
                       <Dialog maxWidth="md" onClose={handleClose} aria-labelledby="customized-dialog-title" open={openId === post.pId}>
                         <MuiDialogContent>
@@ -161,7 +164,7 @@ function Posts({userData=null}) {
                               <div className='likes'>
                                 <Typography className={classes.typo} variant='body2'>Liked By {post.likes.length == 0 ? 'nobody' : ` others`}</Typography>
                                 </div>
-                                {/* <AddComment  userData={userData} postData={post}/>  */}
+                                <AddComment  userData={userData} postData={post}/> 
                                 </div>
                             </div>
                           </div>

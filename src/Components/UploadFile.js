@@ -6,6 +6,7 @@ import Alert from '@material-ui/lab/Alert';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import {v4 as uuidv4} from 'uuid';
 import { storage, database } from '../firebase';
+import SaveIcon from '@material-ui/icons/Save';
 
 
 
@@ -47,11 +48,12 @@ function UploadFile(props) {
         const id = uuidv4();
         let uploadTask = storage.ref(`/post/${props.userData.userId}/${file.name}`).put(file);
         uploadTask.on('state_changed',f1,f2,f3);
-
+        ///progress fucntion 
         function f1(snapshot){
             var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
             console.log('Upload is ' + progress + ' % done.');
         }
+        ///error handling function
         function f2(error){
             setError(error);
             setTimeout(()=>{
@@ -59,7 +61,7 @@ function UploadFile(props) {
             },2000);
             setLoading(false)
         }
-
+        // success fuctioin to do work
         async function f3(){
             setLoading(true);
             uploadTask.snapshot.ref.getDownloadURL().then(url => {
@@ -101,7 +103,7 @@ function UploadFile(props) {
             {
                 error != null ? <Alert severity="warning">{error}</Alert> : <><input onChange={onChange} type="file" color='primary' id='icon-button-file' style={{ display: 'none' }} />
                     <label htmlFor='icon-button-file' >
-                        <Button disabled={loading} component='span' variant="outlined" size='medium' className={classes.button} color="secondary">
+                        <Button startIcon={<SaveIcon/>} disabled={loading} component='span' variant="outlined" size='medium' className={classes.button} color="secondary">
                             Upload
                         </Button>
                     </label>
